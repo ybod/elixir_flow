@@ -1,0 +1,8 @@
+defmodule FlowTest do
+  use ExUnit.Case
+  doctest Flow
+
+  test "the truth" do
+    assert 1 + 1 == 2
+  end
+end
