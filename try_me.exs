@@ -51,3 +51,12 @@ receive do
     IO.inspect timer / 1_000_000
     IO.inspect map
 end
+
+
+IO.puts("\nFlow - global window - count trigger - keep reducer accumulator")
+keep_events = Flow.window_global_trigger(1..1000, 100, :keep)
+IO.inspect(keep_events)
+
+IO.puts("\nFlow - global window - count trigger - reset reducer accumulator")
+reset_reset = Flow.window_global_trigger(1..1000, 100, :reset)
+IO.inspect(reset_reset)

@@ -48,14 +48,26 @@ defmodule Flow do
     end
 
     streams
-    |> Flow.from_enumerables(max_demand: 10)
+    |> Flow.from_enumerables()
     |> Flow.flat_map(&String.split/1)
     |> Flow.map(&String.replace(&1, ~r/\W/u, ""))
     |> Flow.filter_map(fn w -> w != "" end, &String.downcase/1)
-    |> Flow.partition(stages: 3)
+    |> Flow.partition()
     |> Flow.reduce(fn -> %{} end, fn word, map ->
         Map.update(map, word, 1, &(&1 + 1))
        end)
     |> Enum.into(%{})
+  end
+
+  def window_global_trigger(range, count, accumulator) when accumulator in [:keep, :reset] do
+    window =
+      Flow.Window.global
+      |> Flow.Window.trigger_every(count, accumulator)
+
+    Flow.from_enumerable(range)
+    |> Flow.partition(window: window, stages: 1)
+    |> Flow.reduce(fn -> 0 end, & &1 + &2)
+    |> Flow.emit(:state)
+    |> Enum.to_list()
   end
 end
