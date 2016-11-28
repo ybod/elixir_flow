@@ -1,1 +1,3 @@
-%{"gen_stage": {:hex, :gen_stage, "0.8.0", "a76e3f0530f86fae8b8a1021c06527b1ec171cf4c0bdfecd8d5ad0376d1205af", [:mix], []}}
+%{"earmark": {:hex, :earmark, "1.0.3", "89bdbaf2aca8bbb5c97d8b3b55c5dd0cff517ecc78d417e87f1d0982e514557b", [:mix], []},
+  "gen_stage": {:hex, :gen_stage, "0.8.0", "a76e3f0530f86fae8b8a1021c06527b1ec171cf4c0bdfecd8d5ad0376d1205af", [:mix], []},
+  "unicode": {:hex, :unicode, "1.0.0", "4e678d7e9b903f85a99e1e76d265428cbc1c41c6a3280ef4c5d7e57052c41a65", [:mix], [{:earmark, ">= 0.2.1", [hex: :earmark, optional: false]}]}}

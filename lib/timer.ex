@@ -1,4 +1,4 @@
-defmodule Flow.Timer do
+defmodule Timer do
   def run(module, func, params \\ []) when is_atom(module) and is_atom(func) and is_list(params) do
     parent = self()
 

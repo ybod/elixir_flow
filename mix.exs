@@ -27,6 +27,7 @@ defmodule Flow.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:gen_stage, "~> 0.8.0"}]
+    [{:gen_stage, "~> 0.8.0"},
+    {:unicode, "~> 1.0"}]
   end
 end
