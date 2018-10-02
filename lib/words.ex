@@ -7,5 +7,5 @@ defmodule Words do
     String.replace(word, ~r/\W/u, "")
   end
 
-  def pattern, do: pattern = :binary.compile_pattern(" ")
+  def pattern, do: :binary.compile_pattern(" ")
 end
