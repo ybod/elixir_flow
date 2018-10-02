@@ -4,7 +4,8 @@ defmodule Lazy do
     |> File.stream!(read_ahead: 100_000)
     |> Stream.flat_map(&String.split(&1, Words.pattern))
     |> Stream.map(&Words.filter_alphanumeric/1)
-    |> Stream.filter_map(fn w -> w != "" end, &String.downcase/1)
+    |> Stream.filter(fn w -> w != "" end)
+    |> Stream.map(&String.downcase/1)
     |> Enum.reduce(%{}, fn word, map ->
           Map.update(map, word, 1, &(&1 + 1))
       end)
@@ -17,7 +18,8 @@ defmodule Lazy do
     |> File.stream!(read_ahead: 100_000)
     |> Stream.flat_map(&String.split(&1, Words.pattern))
     |> Stream.map(&Words.filter_alphanumeric/1)
-    |> Stream.filter_map(fn w -> w != "" end, &String.downcase/1)
+    |> Stream.filter(fn w -> w != "" end)
+    |> Stream.map(&String.downcase/1)
     |> Enum.each(fn word -> :ets.update_counter(ets, word, 1, {word, 0}) end)
 
     Ets.ets_to_map(ets)
